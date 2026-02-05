@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.7 Million Empty Desks | The Refugee Education Crisis</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@300;400;600;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- D3 (load once) -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson@3"></script>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- Loading -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loader">
+      <div class="loader-bar"></div>
+      <p class="loader-text">Loading refugee data...</p>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">The Refugee Education Project</a>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#methodology">Methodology</a></li>
+        <li><a href="#author">Author</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-image">
+      <img
+        src="images/bgImg-unsplash.jpg"
+        alt="Children in classroom"
+        loading="eager"
+      />
+      <div class="hero-gradient"></div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">UNHCR Education Report 2025</p>
+
+      <h1 class="hero-headline">
+        <span class="headline-number">5.7 Million</span>
+        Empty Desks
+      </h1>
+
+      <p class="hero-summary">
+        Nearly half of the world’s refugee children are out of school.
+        This story focuses on <strong>school-age children (5–17)</strong>:
+        the ones who should be learning, but aren’t.
+        <span style="opacity:0.9">
+          (Global headline figures come from UNHCR’s Education Report; the charts below use UNHCR population statistics and UNESCO indicators.)
+        </span>
+      </p>
+
+      <div class="hero-stats-row">
+        <div class="hero-stat">
+          <span class="stat-value">12.4M</span>
+          <span class="stat-label">School-age refugees</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-value">46%</span>
+          <span class="stat-label">Out of school</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-value">67%</span>
+          <span class="stat-label">Primary enrollment</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-value">37%</span>
+          <span class="stat-label">Secondary enrollment</span>
+        </div>
+      </div>
+
+      <div class="scroll-prompt">
+        <span>Scroll to follow the journey</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"></path>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Introduction -->
+  <section class="intro">
+    <div class="intro-container">
+      <p class="intro-lead">
+  <span class="drop-cap">B</span>ehind every statistic is a child who should be at a desk. 
+  This investigation tracks <strong>school-age refugees (5–17)</strong>—and asks one question: 
+  <strong>Where are the missing desks?</strong>
+</p>
+
+<p>
+  We follow the data from scale to burden to breakdown—ending at the point where most 
+  education systems fail.
+</p>
+
+<p class="method-note">
+  Data sources: UNHCR population statistics + UNESCO UIS national indicators. 
+  Refugee-specific education data rarely exists—we use national rates as context, not measurement.
+</p>
+    </div>
+  </section>
+
+  <!-- Main Story -->
+  <main class="story" id="story">
+
+    <!-- =========================
+         CHAPTER 1
+         ========================= -->
+    <section class="story-section" id="step-1">
+      <div class="section-content">
+        <span class="section-label">Chapter 1</span>
+        <h2 class="section-title">A Growing Baseline</h2>
+<p>
+  Between 2010 and 2024, refugee children under 18 grew from <strong>4 million to over 15 million</strong>. 
+  The two largest bands—ages 5–11 and 12–17—make up <strong>over 75%</strong> of all displaced children.
+</p>
+
+<p>
+  When most refugees are school-age, education isn't a side issue. It's the bottleneck.
+</p>
+
+<p class="method-note">
+  Cross-border only (origin ≠ asylum).</p>
+      </div>
+
+      <div class="chart-section">
+        <div class="chart-wrapper">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title">Child Displacement Over Time (2010–2024)</h3>
+              <p class="chart-subtitle">Stacked by age group: 0–4, 5–11, 12–17</p>
+            </div>
+          </div>
+
+          <div class="chart-container" id="chart-stacked-area"></div>
+          <div class="chart-legend" id="legend-stacked-area"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         CHAPTER 2
+         ========================= -->
+    <section class="story-section" id="step-2">
+      <div class="section-content">
+        <span class="section-label">Chapter 2</span>
+        <h2 class="section-title">Who Carries the Weight?</h2>
+
+<p>
+  Who absorbs these children? Press play and watch 15 years of hosting accumulate.
+</p>
+
+<p>
+  By 2024: <strong>Pakistan leads with 9M child-years</strong>. Türkiye, Uganda, Lebanon, Ethiopia follow. 
+  Germany is the only high-income country in the top 8. The pattern: 
+  <strong>those hosting the most often have the least to spare.</strong>
+</p>
+
+<p class="method-note">
+  Cumulative = each year's population adds to the total. This captures sustained burden, not just peaks.
+</p>
+      </div>
+
+      <div class="chart-section">
+        <div class="chart-wrapper">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title">Cumulative Hosted Children (Top 8 by 2024)</h3>
+              <p class="chart-subtitle">2010 → 2024 (cumulative, animated)</p>
+            </div>
+
+            <div class="chart-controls">
+              <button class="btn-control" id="hostrace-play">Play</button>
+              <input class="year-slider" id="hostrace-slider" type="range" min="2010" max="2024" value="2010" step="1" />
+              <div class="year-display" id="hostrace-year">2010</div>
+            </div>
+          </div>
+
+          <div class="chart-container" id="chart-host-race"></div>
+          <div class="chart-legend" id="legend-host-race"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         CHAPTER 3 (DARK)
+         ========================= -->
+    <section class="story-section story-section-dark" id="step-3">
+      <div class="section-content">
+        <span class="section-label">Chapter 3</span>
+        <h2 class="section-title">The Journey Is Mostly Regional</h2>
+
+        <p>
+          Hosting is not random. Most refugee children move along the shortest, most realistic paths:
+          <strong>to neighboring countries</strong>.
+          This map highlights major origin → host corridors for school-age children (5–17) over time.
+        </p>
+
+        <p>
+          Hover a host country to reveal where children are coming from and the largest origin flows.
+          You’ll notice a strong “neighbor effect” across years, with a few exceptional patterns in Europe.
+        </p>
+
+        <p class="method-note">
+          Takeaway: proximity shapes displacement. When conflicts erupt, neighbors carry the first and biggest load.
+        </p>
+      </div>
+
+      <div class="chart-section">
+        <div class="chart-wrapper">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title">The Journey: Displacement Routes</h3>
+              <p class="chart-subtitle">Major flows of school-age refugee children (5–17)</p>
+            </div>
+          </div>
+
+          <div class="chart-container" id="chart-flowmap" style="min-height:450px;"></div>
+          <div class="chart-legend" id="legend-flowmap"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         CHAPTER 4
+         ========================= -->
+    <section class="story-section" id="step-4">
+      <div class="section-content">
+        <span class="section-label">Chapter 4</span>
+        <h2 class="section-title">The Cliff Happens at Secondary</h2>
+
+        <p>
+  Getting children into primary school is hard. Keeping them through secondary is where systems break.
+</p>
+
+<p>
+  Each row shows the gap: gold = primary enrollment, grey = secondary. 
+  Chad loses 42 points. Ethiopia loses 38.Even Bangladesh (94% primary) drops 21 points. 
+  Jordan's 2-point gap is the exception, not the rule.
+</p>
+
+<p>
+  <strong>The steepest cliff isn't "getting in"—it's "staying in."</strong>
+</p>
+
+      </div>
+
+      <div class="chart-section">
+        <div class="chart-wrapper cliff-wrap">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title">The Cliff: Primary to Secondary Drop-off</h3>
+              <p class="chart-subtitle">Enrollment rates by host country — sorted by gap size</p>
+            </div>
+          </div>
+
+          <div class="chart-container" id="chart-dumbbell"></div>
+
+          <!-- Overlay panel -->
+          <div class="cliff-panel" id="cliff-panel">
+            <div class="cliff-panel-head">
+              <div class="cliff-panel-title" id="cliff-panel-title">Top 15 hosts (2024)</div>
+              <div class="cliff-panel-sub" id="cliff-panel-sub">Sorted by hosted school-age children (5–17)</div>
+            </div>
+            <div class="cliff-panel-list" id="cliff-panel-list"></div>
+          </div>
+
+          <div class="chart-legend" id="legend-dumbbell"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         CHAPTER 5
+         ========================= -->
+    <section class="story-section" id="step-5-resilience">
+      <div class="section-content">
+        <span class="section-label">Chapter 5</span>
+        <h2 class="section-title">Pressure Points in 2024</h2>
+
+        <p>
+  Starting from the top 15 hosts, we focus on <strong>adolescents (12–17)</strong>—the age group 
+  most likely to drop out.
+</p>
+
+<p>
+  X-axis = refugee teens hosted. Y-axis = national out-of-school rate. 
+  The shaded zone marks <strong>double burden</strong>: many refugees + a system already struggling.
+</p>
+
+<p>
+  Three countries land in the priority zone: <strong>Chad, Ethiopia, Pakistan.</strong> 
+  These are where the gap between need and capacity is widest.
+</p>
+
+<p class="method-note">
+  Medians computed from 8 plotted countries. Red = above both medians. 
+  This is a screening lens, not a causal claim.
+</p>
+      </div>
+
+      <div class="chart-section">
+        <div class="chart-wrapper cliff-wrap">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title">Snapshot 2024: Teen Hosting vs OOS (Secondary-age)</h3>
+              <p class="chart-subtitle">
+                X = hosted refugee adolescents (12–17) · Y = out-of-school rate (secondary-age)
+              </p>
+            </div>
+
+            <div class="chart-controls">
+              <div class="year-display" aria-label="Snapshot year">2024</div>
+            </div>
+          </div>
+
+          <div class="chart-container" id="chart-resilience-scatter" style="min-height:560px;"></div>
+          <div class="chart-legend" id="legend-resilience"></div>
+        </div>
+      </div>
+    </section>
+
+<section class="story-section story-section-dark" id="step-6">
+  <div class="section-content">
+  <span class="section-label">Chapter 6</span>
+  <h2 class="section-title">What We Can Change</h2>
+
+ <p>
+  Each square is one child. Gold = in school. Grey = out. 
+  Today, <strong>46 remain grey.</strong> That's 5.7 million children waiting for a desk.
+</p>
+
+<p>
+  But this number is not fixed. Funding, policy, and targeted support have moved it before—and can again. 
+  The 2030 target: raise tertiary access from <strong>9% to 15%</strong>. The gap is 6 points. It's closable.
+</p>
+
+<p class="method-note">
+  46% from UNHCR Education Report 2025. Waffle shows the global average.
+</p>
+</div>
+
+<div class="chart-section">
+  <div class="chart-wrapper chapter6-card">
+    <div class="chart-header chapter6-header">
+      <div>
+        <h3 class="chart-title">The Reality: Out of 100 Refugee Children…</h3>
+        <p class="chart-subtitle">Gold = In School · Grey = Out of School (UNHCR 2025)</p>
+      </div>
+    </div>
+
+    <div class="waffle-layout">
+      <!-- LEFT: Waffle -->
+      <div class="chart-container-waffle">
+        <div id="chart-waffle"></div>
+        <div id="waffle-summary" class="waffle-summary"></div>
+      </div>
+
+      <!-- RIGHT: Target + CTA -->
+      <aside class="waffle-side">
+        <div class="chart-subblock">
+          <h4 class="subblock-title">A Concrete 2030 Target</h4>
+          <p class="subblock-text">
+            Today, only <strong>9%</strong> of refugee youth reach tertiary education.
+            The goal is <strong>15%</strong> by 2030. That’s a <strong>6-point gap</strong>.
+          </p>
+
+          <div id="chart-tertiary-progress" class="tertiary-progress"></div>
+        </div>
+
+        <div class="donate-cta">
+          <p class="donate-cta-title">Help close the gap.</p>
+          <p class="donate-cta-sub">
+            Funding is the difference between a statistic and a student.
+            Support programs that keep children learning and help more youth reach 2030 targets.
+          </p>
+
+          <a href="https://donate.unhcr.org/int/en/education" target="_blank"
+             class="donate-btn donate-btn--center">
+            Support Refugee Education
+          </a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+</section>
+
+
+  </main>
+
+  <!-- Methodology -->
+<section class="methodology" id="methodology">
+  <div class="methodology-container">
+    <h2>Methodology & Data Transparency</h2>
+
+    <div class="methodology-grid">
+      <div class="method-card">
+        <h3>Data Sources</h3>
+        <ul>
+          <li><strong>UNHCR Population Statistics</strong> — demographics by age, origin, and asylum (2010–2024)</li>
+          <li><strong>UNESCO UIS (Institute for Statistics)</strong> — national education indicators (enrollment, out-of-school)</li>
+          <li><strong>UNHCR Education Report 2025</strong> — global refugee education headline rates (used in the summary/waffle)</li>
+        </ul>
+      </div>
+
+      <div class="method-card">
+        <h3>Data Scope</h3>
+        <ul>
+          <li><strong>FOCUS:</strong> School-age children (5–17)</li>
+          <li><strong>CONTEXT ONLY:</strong> Ages 0–4 shown in Chapter 1</li>
+          <li>Primary age: <strong>5–11</strong></li>
+          <li>Secondary age: <strong>12–17</strong></li>
+        </ul>
+      </div>
+
+      <div class="method-card method-card-warning">
+        <h3>⚠️ Uncertainty & Limits</h3>
+        <ul>
+          <li><strong>Education indicators are national</strong> (not refugee-specific). They are used as context/proxies.</li>
+          <li><strong>No invented data:</strong> charts that require paired indicators (e.g., primary + secondary) show only countries with complete values for the selected year.</li>
+          <li><strong>Comparability:</strong> UNHCR population series and UNHCR report headlines can differ due to scope/definitions.</li>
+          <li><strong>Interpretation:</strong> “Priority zones” indicate pressure patterns, not causality.</li>
+        </ul>
+      </div>
+
+      <div class="method-card method-card-wide">
+        <h3>Data Cleaning &amp; Processing</h3>
+
+        <div class="method-card-wide-inner">
+          <ul class="cleaning-list">
+            <li>
+              <strong>UNHCR demographics (counts):</strong>
+              we parse age/sex bins (0–4, 5–11, 12–17) and treat missing numeric fields as <strong>0</strong>.
+              Adults (18+) are excluded from the analysis.
+            </li>
+            <li>
+              <strong>Cross-border focus:</strong>
+              rows where <strong>origin = asylum</strong> are excluded from host totals and flows (no “self-flow”).
+            </li>
+            <li>
+              <strong>Aggregation:</strong>
+              per year we aggregate school-age totals (5–17) by <strong>host (asylum)</strong> and by <strong>origin</strong>.
+              For the map we aggregate origin→host pairs and drop very small flows (<strong>&lt; 1,000</strong>) to keep the view readable.
+            </li>
+            <li>
+              <strong>UNESCO UIS transformation:</strong>
+              we convert out-of-school rates to an “in-school proxy” using
+              <code>inSchool = 100 − OOS</code>
+              after clamping rates to <strong>[0, 100]</strong>.
+            </li>
+            <li>
+              <strong>Secondary OOS (STRICT):</strong>
+              we use only the official combined secondary indicator <code>ROFST.2T3</code>.
+              If it is missing, secondary is treated as missing (no substitution with lower/upper-only).
+              A source flag is exported (<code>UIS.SEC.SOURCE</code>) to make this explicit.
+            </li>
+            <li>
+              <strong>No imputation:</strong>
+              we do not invent values. When an indicator is missing for a given year/country, it stays missing and the chart filters communicate that explicitly.
+            </li>
+          </ul>
+
+          <div class="cleaning-note">
+            Preprocessing scripts are included in the GitHub repository and generate
+            <code>data/clean_demographics.csv</code> and <code>data/clean_education.csv</code>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Author -->
+  <section class="author-section" id="author">
+    <div class="author-container">
+      <p class="author-label">Created By</p>
+      <h2 class="author-name">Mohammed Yassin</h2>
+      <p class="author-bio">
+        This data visualization project was built to communicate the refugee education crisis through transparent, interactive evidence.
+        Data is publicly available from UNHCR and UNESCO UIS. Built with D3.js v7.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p class="footer-title">5.7 Million Empty Desks</p>
+      <p class="footer-desc">UNHCR Education Report 2025 · Focus: school-age children (5–17)</p>
+      <div class="footer-links">
+        <a href="https://www.unhcr.org/refugee-statistics/" target="_blank">UNHCR Statistics</a>
+        <a href="https://www.unhcr.org/media/unhcr-education-report-2025" target="_blank">Education Report 2025</a>
+        <a href="https://uis.unesco.org/" target="_blank">UNESCO UIS</a>
+      </div>
+      <p class="footer-copyright">© 2025 Mohammed Yassin · University Project</p>
+    </div>
+  </footer>
+
+  <!-- Tooltip -->
+  <div id="tooltip" class="tooltip"></div>
+  <div id="global-tooltip" style="opacity:0;"></div>
+
+  <!-- Scripts -->
+  <script src="js/charts/stackedArea.js"></script>
+  <script src="js/charts/hostRace.js"></script>
+  <script src="js/charts/flowMap.js"></script>
+  <script src="js/charts/dumbbell.js"></script>
+  <script src="js/charts/resilienceScatter.js"></script>
+  <script src="js/charts/waffle.js"></script>
+  <script src="js/charts/tertiaryProgress.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
