@@ -83,6 +83,7 @@ No build step. No framework. Just a static site.
 
 ## Repository structure
 
+```bash
 refugee-education/
 ├─ index.html
 ├─ css/
@@ -107,6 +108,7 @@ refugee-education/
 │  └─ bgImg-unsplash.jpg
 ├─ data_cleaning.ipynb
 └─ refugee-education-report-2025.pdf
+```
 
 ## How to run locally
 
@@ -116,3 +118,4 @@ Because the website loads CSV files via `fetch()`, you need a local web server (
 ```bash
 cd refugee-education
 python -m http.server 8000
+
