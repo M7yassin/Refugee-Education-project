@@ -243,7 +243,7 @@ window.renderResilienceBurdenScatter = function renderResilienceBurdenScatter() 
     .attr('x', w / 2)
     .attr('y', h + (isNarrow ? 44 : 48))
     .attr('text-anchor', 'middle')
-    .text(`Hosted refugee adolescents (12–17) — ${YEAR}`);
+    .text(`Hosted Teens refugee — ${YEAR}`);
 
   g.append('text')
     .attr('class', 'scatter-axis-label scatter-y-label')
@@ -315,13 +315,10 @@ window.renderResilienceBurdenScatter = function renderResilienceBurdenScatter() 
       showTip(event, `
         <div style="font-weight:900;margin-bottom:6px">${escapeHtml(d.name)}</div>
         <div><b>Year:</b> ${YEAR}</div>
-        <div><b>Teen hosted (12–17):</b> ${fmtNum(d.teen1217)}</div>
+        <div><b>Teen hosted number:</b> ${fmtNum(d.teen1217)}</div>
         <div><b>OOS (secondary-age):</b> ${d.oos.toFixed(1)}%</div>
         <div style="margin-top:8px;opacity:0.85">
           <b>Cliff context:</b> Primary ${d.primary.toFixed(1)}% → Secondary ${d.secondary.toFixed(1)}% (drop −${d.drop.toFixed(1)}%)
-        </div>
-        <div style="margin-top:8px;opacity:0.70;font-size:12px">
-          Priority zone = above both medians (teen burden & OOS).
         </div>
       `);
     })
@@ -347,8 +344,8 @@ window.renderResilienceBurdenScatter = function renderResilienceBurdenScatter() 
   const priorityCount = data.filter(d => d.isPriority).length;
 
   const items = [
-    { label: `non-Priority zone`, color: accent },
-    { label: `Priority zone`, color: red }
+    { label: `low-pressurre zone`, color: accent },
+    { label: `High-pressure zone`, color: red }
   ];
 
   const it = legend.selectAll('.legend-item')
